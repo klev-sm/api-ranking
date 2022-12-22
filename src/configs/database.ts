@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-const url: string = "mongodb://localhost:27017/api-ranking";
+const url: string = process.env.MONGO_URI as string;
 const client = new MongoClient(url);
 
 async function main(): Promise<MongoClient> {

@@ -3,19 +3,34 @@ import client from "../configs/database";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-    res.send("Olá, mundo!");
+const db = client.db("api-ranking");
+const collection = db.collection("avaliacoes");
+
+router.get("/avaliacao", (req, res) => {
+    try {
+        collection
+            .find({})
+            .toArray()
+            .then((results) => {
+                res.status(200).json({
+                    message: "Documentos da coleção retornados com sucesso.",
+                    results: results,
+                });
+            })
+            .catch((err) => {
+                throw new Error(err);
+            });
+    } catch (error) {
+        res.status(400).json({
+            message: "Erro ao retornar documentos da coleção",
+        });
+    }
 });
 
 router.post("/avaliacao", async (req, res) => {
     try {
         const nome: string = req.body.nome;
         const avaliacao: number = req.body.avaliacao;
-
-        console.log(nome, avaliacao);
-
-        const db = client.db("api-ranking");
-        const collection = db.collection("avaliacoes");
 
         collection
             .insertOne({

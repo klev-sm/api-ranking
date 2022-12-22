@@ -10,6 +10,9 @@ router.get("/avaliacao", (req, res) => {
     try {
         collection
             .find({})
+            .sort({
+                avaliacao: -1,
+            })
             .toArray()
             .then((results) => {
                 res.status(200).json({

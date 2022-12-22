@@ -6,8 +6,10 @@ dotenv.config();
 const app: express.Application = express();
 const port: string = process.env.LOCAL_PORT || "8080";
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
-    res.render("Olá, mundo");
+    res.send("Olá, mundo!");
 });
 
 app.listen(port, () => {

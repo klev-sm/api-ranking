@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { Db } from "mongodb";
+import cors from "cors";
 
 const router = Router();
 

@@ -3,10 +3,16 @@ dotenv.config();
 import express from "express";
 import { createRoutes } from "./routes/routes";
 import { DatabaseSingleton } from "./configs/database";
+import cors, { CorsOptions } from "cors";
 
-const app: express.Application = express();
+const app = express();
 const port: string = process.env.PORT || "8080";
 
+const options: CorsOptions = {
+    origin: "https://interactive-rating-component-f0os.onrender.com",
+};
+
+app.use(cors(options));
 app.use(express.json());
 app.use(express.urlencoded());
 

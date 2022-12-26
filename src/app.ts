@@ -8,11 +8,7 @@ import cors, { CorsOptions } from "cors";
 const app = express();
 const port: string = process.env.PORT || "8080";
 
-const options: CorsOptions = {
-    origin: "https://interactive-rating-component-f0os.onrender.com",
-};
-
-app.use(cors(options));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 
